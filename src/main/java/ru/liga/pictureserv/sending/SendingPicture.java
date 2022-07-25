@@ -1,10 +1,12 @@
 package ru.liga.pictureserv.sending;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.net.MalformedURLException;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Base64;
 
 @Service
 public class SendingPicture {
@@ -29,10 +31,12 @@ public class SendingPicture {
     }
 
 
-    public URL getMyUrl() {
+    public byte[] getImageBase64() {
         try {
-            return new File("temp/image.jpg").toURI().toURL();
-        } catch (MalformedURLException e) {
+            byte[] fileContent = FileUtils.readFileToByteArray(new File("temp/image.jpg"));
+//            return Base64.getEncoder().encodeToString(fileContent);
+            return fileContent;
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

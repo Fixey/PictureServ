@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.liga.pictureserv.painting.CreatePicture;
 import ru.liga.pictureserv.sending.SendingPicture;
 
-import java.net.URL;
-
 
 @RestController
 public class ControllerWeb {
@@ -22,10 +20,10 @@ public class ControllerWeb {
         this.createPicture = createPicture;
     }
 
-    @PostMapping(value = "/pict")
-    public URL sendUrl(@RequestBody TextEntity TextEntity) {
+    @PostMapping(value = "/pict", produces = "jpg")
+    public byte[] sendImage(@RequestBody TextEntity TextEntity) {
         createPicture.createPicture(TextEntity.getText());
-        return sendingPicture.getMyUrl();
+        return sendingPicture.getImageBase64();
     }
 
     @GetMapping

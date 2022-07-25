@@ -1,6 +1,5 @@
 package ru.liga.pictureserv.painting;
 
-import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -12,11 +11,26 @@ import static ru.liga.pictureserv.constant.ConstantUtil.OLDSTANDART_REG_PATH;
 
 @Service
 public class CreatingFont {
-    @Getter
+
     private Font mainFontB;
-    @Getter
+
     private Font mainFont;
 
+    public Font getMainFontB() {
+        return mainFontB;
+    }
+
+    public void setMainFontB(Font mainFontB) {
+        this.mainFontB = mainFontB;
+    }
+
+    public Font getMainFont() {
+        return mainFont;
+    }
+
+    public void setMainFont(Font mainFont) {
+        this.mainFont = mainFont;
+    }
 
     public CreatingFont() {
         try {
